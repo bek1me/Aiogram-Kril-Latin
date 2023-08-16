@@ -1,2 +1,2 @@
-# Aiogram-Simple-Template
-Aiogram-Simple-Template
+# Aiogram-Kril-Latin
+Aiogram-Kril-Latin
