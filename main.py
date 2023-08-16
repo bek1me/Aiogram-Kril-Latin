@@ -5,6 +5,7 @@ Bu har qanday kiruvchi matnli xabarlarni aks ettiradi.
 
 import config
 import logging
+from translate import to_latin, to_cyrillic
 from aiogram import Bot, Dispatcher, executor, types
 
 # loggingni sozlaymiz
@@ -24,6 +25,16 @@ async def welcome(m: types.Message):
     await m.answer(
         text=f'Salom botga xush kelibsiz!\n{m.from_user.full_name}'
     )
+
+
+@dp.message_handler()
+async def translate(message: types.Message):
+    if message.text.isascii():
+        result = to_cyrillic(message.text) # lotindan krilga o'tkazish uchun
+    else:
+        result = to_latin(message.text) # krildan lotinga o'tkazish uchun
+
+    await message.answer(result)
 
 @dp.message_handler(state=None)
 async def echo(m: types.Message):
